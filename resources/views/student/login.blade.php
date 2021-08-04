@@ -1,11 +1,22 @@
 @extends('layouts.app')
-
+@section('headerlinks')
+@if (Route::has('student.login.view'))
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('student.login.view') }}">{{ __('Login') }}</a>
+    </li>
+@endif
+@if (Route::has('student.register.view'))
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('student.register.view') }}">{{ __('Register') }}</a>
+    </li>
+@endif
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Teacher Login') }}</div>
+                <div class="card-header">Student Login</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -38,30 +49,11 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
                             </div>
                         </div>
                     </form>

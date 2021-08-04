@@ -9,7 +9,7 @@ class Teacher extends Authenticatable
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email','photo_url','password'];
+    protected $fillable = ['name', 'email','photo_url','password','number'];
 
     public function subjects(){
         return $this->belongsToMany(Subject::class, 'courses', 'teacher_id', 'subject_id');
